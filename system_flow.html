@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Loan System Workflow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .workflow-section {
+            padding: 40px;
+        }
+        
+        .workflow-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 40px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .workflow-phase {
+            margin-bottom: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            background: white;
+        }
+        
+        .phase-header {
+            padding: 25px;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-phase .phase-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .backend-phase .phase-header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+        
+        .ai-phase .phase-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .integration-phase .phase-header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
+        .deployment-phase .phase-header {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+        }
+        
+        .phase-content {
+            padding: 30px;
+        }
+        
+        .step-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .step-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .user-step {
+            border-left-color: #3498db;
+        }
+        
+        .backend-step {
+            border-left-color: #27ae60;
+        }
+        
+        .ai-step {
+            border-left-color: #e74c3c;
+        }
+        
+        .integration-step {
+            border-left-color: #f39c12;
+        }
+        
+        .deployment-step {
+            border-left-color: #9b59b6;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .step-description {
+            color: #5a6c7d;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .step-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .step-details {
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .api-endpoint {
+            background: #1a1a2e;
+            color: #00ff88;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .method-post { color: #00d2ff; }
+        .method-get { color: #00ff88; }
+        .method-put { color: #ffd700; }
+        
+        .workflow-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        
+        .flow-diagram {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+        }
+        
+        .flow-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .flow-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .flow-arrow-right {
+            font-size: 1.5em;
+            color: white;
+        }
+        
+        .status-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: #f39c12; color: white; }
+        .status-processing { background: #3498db; color: white; }
+        .status-approved { background: #27ae60; color: white; }
+        .status-rejected { background: #e74c3c; color: white; }
+        
+        @media (max-width: 768px) {
+            .flow-row {
+                flex-direction: column;
+            }
+            
+            .flow-arrow-right {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Complete Loan System Workflow</h1>
+            <p>End-to-End Process Flow - From Application to Loan Disbursement</p>
+        </div>
+        
+        <div class="workflow-section">
+            <!-- Overall System Flow -->
+            <div class="flow-diagram">
+                <h3 style="text-align: center; margin: 0 0 20px 0;">📋 High-Level System Flow</h3>
+                <div class="flow-row">
+                    <div class="flow-box">👤 User Registration</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">📄 Document Upload</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">🤖 AI Analysis</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">💰 Loan Offer</div>
+                </div>
+                <div class="flow-row">
+                    <div class="flow-box">✅ Decision</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">📊 Processing</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">💳 Disbursement</div>
+                    <div class="flow-arrow-right">→</div>
+                    <div class="flow-box">📅 Repayment</div>
+                </div>
+            </div>
+            
+            <!-- Phase 1: User Journey -->
+            <div class="workflow-phase user-phase">
+                <div class="phase-header">
+                    <span>👤</span>
+                    <span>Phase 1: User Journey & Application</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step-flow">
+                        <div class="step-item user-step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">User Registration & Authentication</div>
+                            <div class="step-description">User creates account and completes identity verification</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Django Auth</span>
+                                <span class="tech-tag">JWT Tokens</span>
+                                <span class="tech-tag">Email Verification</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-post">POST</span> /api/v1/auth/register/
+                            </div>
+                            <div class="step-details">
+                                • User fills registration form<br>
+                                • Email verification sent via AWS SES<br>
+                                • JWT token generated for authenticated sessions<br>
+                                • User profile created in PostgreSQL
+                            </div>
+                        </div>
+                        
+                        <div class="step-item user-step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Loan Application Creation</div>
+                            <div class="step-description">User initiates loan application with basic financial information</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Django Forms</span>
+                                <span class="tech-tag">Data Validation</span>
+                                <span class="tech-tag">Application State</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-post">POST</span> /api/v1/applications/
+                            </div>
+                            <div class="step-details">
+                                • Loan amount, purpose, employment details<br>
+                                • Initial eligibility check<br>
+                                • Application status: DRAFT<br>
+                                • Required documents list generated
+                            </div>
+                        </div>
+                        
+                        <div class="step-item user-step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Document Upload</div>
+                            <div class="step-description">User uploads required financial documents</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">AWS S3</span>
+                                <span class="tech-tag">Pre-signed URLs</span>
+                                <span class="tech-tag">File Validation</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-post">POST</span> /api/v1/documents/upload/
+                            </div>
+                            <div class="status-badges">
+                                <span class="status-badge status-pending">Bank Statements</span>
+                                <span class="status-badge status-pending">Pay Stubs</span>
+                                <span class="status-badge status-pending">Tax Returns</span>
+                            </div>
+                            <div class="step-details">
+                                • PDF files uploaded to S3 bucket<br>
+                                • File type and size validation<br>
+                                • Document metadata stored in database<br>
+                                • Application status: SUBMITTED
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2: Backend Processing -->
+            <div class="workflow-phase backend-phase">
+                <div class="phase-header">
+                    <span>⚙️</span>
+                    <span>Phase 2: Backend Processing & Document Analysis</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step-flow">
+                        <div class="step-item backend-step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Document Text Extraction</div>
+                            <div class="step-description">AWS Textract processes uploaded documents</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">AWS Textract</span>
+                                <span class="tech-tag">Celery Tasks</span>
+                                <span class="tech-tag">Redis Queue</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-post">POST</span> /api/v1/documents/process/
+                            </div>
+                            <div class="step-details">
+                                • Async Celery task triggered<br>
+                                • Textract extracts text from PDFs<br>
+                                • Structured data parsing<br>
+                                • Financial data normalized and stored
+                            </div>
+                        </div>
+                        
+                        <div class="step-item backend-step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Data Validation & Processing</div>
+                            <div class="step-description">Backend validates and structures extracted financial data</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Django ORM</span>
+                                <span class="tech-tag">Data Validation</span>
+                                <span class="tech-tag">Financial Calculations</span>
+                            </div>
+                            <div class="step-details">
+                                • Income/expense calculations<br>
+                                • Debt-to-income ratio computation<br>
+                                • Bank transaction analysis<br>
+                                • Financial stability metrics
+                            </div>
+                        </div>
+                        
+                        <div class="step-item backend-step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Application Status Management</div>
+                            <div class="step-description">Backend manages application workflow states</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Django State Machine</span>
+                                <span class="tech-tag">Status Tracking</span>
+                                <span class="tech-tag">Notifications</span>
+                            </div>
+                            <div class="status-badges">
+                                <span class="status-badge status-processing">PROCESSING</span>
+                                <span class="status-badge status-processing">UNDER_REVIEW</span>
+                            </div>
+                            <div class="step-details">
+                                • Application status: PROCESSING<br>
+                                • User notifications via AWS SES<br>
+                                • Progress tracking in database<br>
+                                • Audit trail maintenance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3: AI Analysis -->
+            <div class="workflow-phase ai-phase">
+                <div class="phase-header">
+                    <span>🤖</span>
+                    <span>Phase 3: Gemini AI Analysis & Risk Assessment</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step-flow">
+                        <div class="step-item ai-step">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Gemini AI Data Preparation</div>
+                            <div class="step-description">Structured financial data prepared for AI analysis</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Data Serialization</span>
+                                <span class="tech-tag">Prompt Engineering</span>
+                                <span class="tech-tag">JSON Formatting</span>
+                            </div>
+                            <div class="step-details">
+                                • Financial data aggregation<br>
+                                • Context preparation for Gemini<br>
+                                • Role-based prompt structuring<br>
+                                • Request payload formatting
+                            </div>
+                        </div>
+                        
+                        <div class="step-item ai-step">
+                            <div class="step-number">8</div>
+                            <div class="step-title">Gemini AI Credit Analysis</div>
+                            <div class="step-description">AI performs comprehensive credit risk assessment</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Gemini Pro API</span>
+                                <span class="tech-tag">5 C's Framework</span>
+                                <span class="tech-tag">Risk Scoring</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-post">POST</span> /api/v1/analysis/gemini/
+                            </div>
+                            <div class="step-details">
+                                • Character assessment (credit history)<br>
+                                • Capacity analysis (income vs. expenses)<br>
+                                • Capital evaluation (savings & assets)<br>
+                                • Collateral consideration<br>
+                                • Conditions analysis (economic factors)
+                            </div>
+                        </div>
+                        
+                        <div class="step-item ai-step">
+                            <div class="step-number">9</div>
+                            <div class="step-title">Risk Score & Decision Processing</div>
+                            <div class="step-description">AI generates credit confidence score and loan recommendations</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">JSON Response</span>
+                                <span class="tech-tag">Score Calculation</span>
+                                <span class="tech-tag">Decision Logic</span>
+                            </div>
+                            <div class="step-details">
+                                • Credit confidence score (0-100%)<br>
+                                • Risk category: LOW/MEDIUM/HIGH<br>
+                                • Loan amount recommendations<br>
+                                • Interest rate suggestions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 4: Loan Offer & Decision -->
+            <div class="workflow-phase integration-phase">
+                <div class="phase-header">
+                    <span>💰</span>
+                    <span>Phase 4: Loan Offer Generation & User Decision</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step-flow">
+                        <div class="step-item integration-step">
+                            <div class="step-number">10</div>
+                            <div class="step-title">Loan Offer Calculation</div>
+                            <div class="step-description">Backend generates personalized loan offers based on AI analysis</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Financial Modeling</span>
+                                <span class="tech-tag">Django Calculations</span>
+                                <span class="tech-tag">Offer Engine</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-get">GET</span> /api/v1/offers/{application_id}/
+                            </div>
+                            <div class="step-details">
+                                • Multiple loan options generated<br>
+                                • Interest rates based on risk score<br>
+                                • Payment schedules calculated<br>
+                                • Terms and conditions prepared
+                            </div>
+                        </div>
+                        
+                        <div class="step-item integration-step">
+                            <div class="step-number">11</div>
+                            <div class="step-title">Offer Presentation</div>
+                            <div class="step-description">User receives loan offers with detailed terms</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Email Notification</span>
+                                <span class="tech-tag">Dashboard Update</span>
+                                <span class="tech-tag">AWS SES</span>
+                            </div>
+                            <div class="status-badges">
+                                <span class="status-badge status-approved">Offer 1: ₦500K</span>
+                                <span class="status-badge status-approved">Offer 2: ₦750K</span>
+                            </div>
+                            <div class="step-details">
+                                • Email notification sent<br>
+                                • Dashboard updated with offers<br>
+                                • Detailed terms displayed<br>
+                                • Application status: OFFERS_AVAILABLE
+                            </div>
+                        </div>
+                        
+                        <div class="step-item integration-step">
+                            <div class="step-number">12</div>
+                            <div class="step-title">User Decision & Acceptance</div>
+                            <div class="step-description">User reviews and accepts/declines loan offers</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Digital Signature</span>
+                                <span class="tech-tag">Terms Acceptance</span>
+                                <span class="tech-tag">Contract Generation</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-put">PUT</span> /api/v1/offers/{id}/respond/
+                            </div>
+                            <div class="step-details">
+                                • User selects preferred offer<br>
+                                • Digital contract signing<br>
+                                • Legal terms acceptance<br>
+                                • Application status: ACCEPTED/DECLINED
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 5: Loan Processing & Disbursement -->
+            <div class="workflow-phase deployment-phase">
+                <div class="phase-header">
+                    <span>💳</span>
+                    <span>Phase 5: Loan Processing & Disbursement</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step-flow">
+                        <div class="step-item deployment-step">
+                            <div class="step-number">13</div>
+                            <div class="step-title">Final Verification & KYC</div>
+                            <div class="step-description">Final identity verification and compliance checks</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">KYC Verification</span>
+                                <span class="tech-tag">Compliance Check</span>
+                                <span class="tech-tag">Document Verification</span>
+                            </div>
+                            <div class="step-details">
+                                • Identity document verification<br>
+                                • Bank account validation<br>
+                                • Regulatory compliance check<br>
+                                • Final approval workflow
+                            </div>
+                        </div>
+                        
+                        <div class="step-item deployment-step">
+                            <div class="step-number">14</div>
+                            <div class="step-title">Loan Account Creation</div>
+                            <div class="step-description">Loan account setup and payment schedule generation</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Account Management</span>
+                                <span class="tech-tag">Payment Schedule</span>
+                                <span class="tech-tag">Interest Calculation</span>
+                            </div>
+                            <div class="api-endpoint">
+                                <span class="method-get">GET</span> /api/v1/loans/{id}/schedule/
+                            </div>
+                            <div class="step-details">
+                                • Loan account created in system<br>
+                                • Monthly payment schedule generated<br>
+                                • Interest calculations finalized<br>
+                                • Repayment reminders configured
+                            </div>
+                        </div>
+                        
+                        <div class="step-item deployment-step">
+                            <div class="step-number">15</div>
+                            <div class="step-title">Fund Disbursement</div>
+                            <div class="step-description">Loan amount transferred to user's bank account</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Payment Gateway</span>
+                                <span class="tech-badge">Bank Transfer</span>
+                                <span class="tech-tag">Transaction Logging</span>
+                            </div>
+                            <div class="step-details">
+                                • Bank transfer initiated<br>
+                                • Transaction confirmation<br>
+                                • Disbursement notification<br>
+                                • Loan status: ACTIVE
+                            </div>
+                        </div>
+                        
+                        <div class="step-item deployment-step">
+                            <div class="step-number">16</div>
+                            <div class="step-title">Ongoing Management</div>
+                            <div class="step-description">Loan monitoring, payments, and customer support</div>
+                            <div class="step-tech">
+                                <span class="tech-tag">Payment Tracking</span>
+                                <span class="tech-tag">Automated Reminders</span>
+                                <span class="tech-tag">Customer Support</span>
+                            </div>
+                            <div class="step-details">
+                                • Monthly payment reminders<br>
+                                • Payment processing and tracking<br>
+                                • Customer support portal<br>
+                                • Early payment options
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Integration Flow -->
+            <div class="flow-diagram">
+                <h3 style="text-align: center; margin: 0 0 20px 0;">🔧 Technical Integration Flow</h3>
+                <div class="flow-row">
+                    <div class="flow-box">Django REST API</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">PostgreSQL DB</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">Redis Cache</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">Celery Queue</div>
+                </div>
+                <div class="flow-row">
+                    <div class="flow-box">AWS S3 Storage</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">AWS Textract</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">Gemini AI API</div>
+                    <div class="flow-arrow-right">↔</div>
+                    <div class="flow-box">AWS SES Email</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
