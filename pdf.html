@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Official Bank Statement - FNBN</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f7f9fc; }
+        .header { text-align: center; border-bottom: 3px solid #0046ad; padding-bottom: 15px; margin-bottom: 30px; }
+        .bank-name { color: #0046ad; font-size: 28px; font-weight: bold; letter-spacing: 1.5px; }
+        .section { margin-bottom: 30px; page-break-inside: avoid; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .section-title { background-color: #e6f0ff; padding: 12px 15px; border-left: 6px solid #0046ad; margin-bottom: 18px; font-size: 18px; font-weight: 600; color: #003375; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        th { background-color: #0046ad; color: white; text-align: left; padding: 12px 15px; font-weight: 600; }
+        td { padding: 10px 15px; border-bottom: 1px solid #ddd; vertical-align: middle; }
+        tr:nth-child(even) { background-color: #f9faff; }
+        tr:hover { background-color: #dce9ff; }
+        .summary-table td { padding: 14px 20px; font-size: 15px; }
+        .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #777; }
+        .note { font-style: italic; color: #666; font-size: 13px; margin-top: 8px; }
+        .currency { text-align: right; font-family: 'Courier New', Courier, monospace; }
+        .debit { color: #d9534f; font-weight: 600; }
+        .credit { color: #5cb85c; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="bank-name">First National Bank of Nigeria (FNBN)</div>
+        <div>Marina Branch, Lagos | SWIFT/BIC: FNBNNGJAXXX</div>
+    </div>
+
+    <!-- Account Holder Section -->
+    <div class="section">
+        <div class="section-title">I. Account Holder Information</div>
+        <table>
+            <tr><td>Account Holder:</td><td><strong>Mr. Aliyu Hassan</strong></td></tr>
+            <tr><td>Address:</td><td>Block A, Suite 3, Victoria Island, Lagos, Nigeria</td></tr>
+            <tr><td>Account Number:</td><td>0123456789 (Savings Account)</td></tr>
+            <tr><td>Sort Code:</td><td>07-00-12</td></tr>
+        </table>
+    </div>
+
+    <!-- Statement Period -->
+    <div class="section">
+        <div class="section-title">II. Statement Period</div>
+        <table>
+            <tr>
+                <td>Start Date:</td><td>June 1, 2024</td>
+                <td>End Date:</td><td>May 31, 2025</td>
+                <td>Currency:</td><td>Nigerian Naira (₦)</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Account Summary -->
+    <div class="section">
+        <div class="section-title">III. Account Summary (June 2024 - May 2025)</div>
+        <table class="summary-table">
+            <tr>
+                <td>Opening Balance (June 1, 2024):</td>
+                <td class="currency">₦50,000.00</td>
+            </tr>
+            <tr>
+                <td>Total Deposits:</td>
+                <td class="currency">₦2,550,000.00</td>
+            </tr>
+            <tr>
+                <td>Total Withdrawals:</td>
+                <td class="currency">₦1,600,000.00</td>
+            </tr>
+            <tr>
+                <td>Interest Earned:</td>
+                <td class="currency credit">+₦5,000.00</td>
+            </tr>
+            <tr>
+                <td>Bank Charges/Fees:</td>
+                <td class="currency debit">-₦5,000.00</td>
+            </tr>
+            <tr>
+                <td><strong>Closing Balance (May 31, 2025):</strong></td>
+                <td class="currency"><strong>₦1,000,000.00</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="section">
+        <div class="section-title">IV. Transaction History (January - May 2025)</div>
+        <div class="note">Sample transactions shown. Full statement available upon request.</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Debit (₦)</th>
+                    <th>Credit (₦)</th>
+                    <th>Balance (₦)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- January 2025 -->
+                <tr><td>Jan 1, 2025</td><td>Opening Balance</td><td></td><td></td><td class="currency">₦450,000.00</td></tr>
+                <tr><td>Jan 5, 2025</td><td>Salary Credit</td><td></td><td class="currency credit">₦280,000.00</td><td class="currency">730,000.00</td></tr>
+                <tr><td>Jan 10, 2025</td><td>Electricity Bill Payment</td><td class="currency debit">₦27,000.00</td><td></td><td class="currency">703,000.00</td></tr>
+                <tr><td>Jan 20, 2025</td><td>Transfer to Savings Account</td><td class="currency debit">₦100,000.00</td><td></td><td class="currency">603,000.00</td></tr>
+
+                <!-- February 2025 -->
+                <tr><td>Feb 1, 2025</td><td>Balance B/F from January</td><td></td><td></td><td class="currency">603,000.00</td></tr>
+                <tr><td>Feb 4, 2025</td><td>Salary Credit</td><td></td><td class="currency credit">₦280,000.00</td><td class="currency">883,000.00</td></tr>
+                <tr><td>Feb 15, 2025</td><td>Rent Payment</td><td class="currency debit">₦150,000.00</td><td></td><td class="currency">733,000.00</td></tr>
+                <tr><td>Feb 20, 2025</td><td>Grocery Shopping</td><td class="currency debit">₦48,000.00</td><td></td><td class="currency">685,000.00</td></tr>
+
+                <!-- March 2025 -->
+                <tr><td>Mar 1, 2025</td><td>Balance B/F from February</td><td></td><td></td><td class="currency">685,000.00</td></tr>
+                <tr><td>Mar 5, 2025</td><td>Salary Credit</td><td></td><td class="currency credit">₦280,000.00</td><td class="currency">965,000.00</td></tr>
+                <tr><td>Mar 12, 2025</td><td>Water Bill Payment</td><td class="currency debit">₦15,000.00</td><td></td><td class="currency">950,000.00</td></tr>
+                <tr><td>Mar 20, 2025</td><td>Betting/Gambling</td><td class="currency debit">₦30,000.00</td><td></td><td class="currency">920,000.00</td></tr>
+
+                <!-- April 2025 -->
+                <tr><td>Apr 1, 2025</td><td>Balance B/F from March</td><td></td><td></td><td class="currency">920,000.00</td></tr>
+                <tr><td>Apr 6, 2025</td><td>Salary Credit</td><td></td><td class="currency credit">₦280,000.00</td><td class="currency">1,200,000.00</td></tr>
+                <tr><td>Apr 15, 2025</td><td>Rent Payment</td><td class="currency debit">₦150,000.00</td><td></td><td class="currency">1,050,000.00</td></tr>
+                <tr><td>Apr 22, 2025</td><td>Groceries & Food</td><td class="currency debit">₦45,000.00</td><td></td><td class="currency">1,005,000.00</td></tr>
+
+                <!-- May 2025 -->
+                <tr><td>May 1, 2025</td><td>Balance B/F from April</td><td></td><td></td><td class="currency">1,005,000.00</td></tr>
+                <tr><td>May 2, 2025</td><td>Transfer to Mr. Tunde (Rent Payment)</td><td class="currency debit">₦150,000.00</td><td></td><td class="currency">855,000.00</td></tr>
+                <tr><td>May 10, 2025</td><td>Freelance Payment</td><td></td><td class="currency credit">₦120,000.00</td><td class="currency">975,000.00</td></tr>
+                <tr><td>May 15, 2025</td><td>Utility Bill Payment</td><td class="currency debit">₦25,000.00</td><td></td><td class="currency">950,000.00</td></tr>
+                <tr><td>May 25, 2025</td><td>ATM Withdrawal</td><td class="currency debit">₦50,000.00</td><td></td><td class="currency">900,000.00</td></tr>
+                <tr><td>May 31, 2025</td><td>Closing Balance</td><td></td><td></td><td class="currency"><strong>₦1,000,000.00</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Financial Analysis -->
+    <div class="section">
+        <div class="section-title">V. Monthly Financial Analysis</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Money In (₦)</th>
+                    <th>Money Out (₦)</th>
+                    <th>Net Flow (₦)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>January 2025</td><td class="currency credit">₦280,000.00</td><td class="currency debit">₦127,000.00</td><td class="currency">+₦153,000.00</td></tr>
+                <tr><td>February 2025</td><td class="currency credit">₦280,000.00</td><td class="currency debit">₦198,000.00</td><td class="currency">+₦82,000.00</td></tr>
+                <tr><td>March 2025</td><td class="currency credit">₦280,000.00</td><td class="currency debit">₦45,000.00</td><td class="currency">+₦235,000.00</td></tr>
+                <tr><td>April 2025</td><td class="currency credit">₦280,000.00</td><td class="currency debit">₦195,000.00</td><td class="currency">+₦85,000.00</td></tr>
+                <tr><td>May 2025</td><td class="currency credit">₦120,000.00</td><td class="currency debit">₦225,000.00</td><td class="currency">-₦105,000.00</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Summary:</strong> The account has seen consistent monthly inflows mostly from salary credits, while outflows vary monthly on rent, utilities, groceries, and other payments. May shows a negative net flow due to larger withdrawals.</p>
+    </div>
+
+    <div class="footer">
+        This statement is generated electronically and is valid without a signature.<br>
+        Contact FNBN Customer Care at +234-800-123-4567 or visit www.fnbnigeria.com
+    </div>
+</body>
+</html>
