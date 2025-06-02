@@ -53,7 +53,7 @@
         
         .toggle-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box_shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         .toggle-btn.active {
@@ -301,96 +301,88 @@
             <div class="phase ml-phase">
                 <div class="phase-header ml-header">
                     <span>🧠</span>
-                    <span>Machine Learning Pipeline Architecture</span>
+                    <span>Machine Learning Pipeline Architecture (Hybrid AI Powered)</span>
                 </div>
                 <div class="phase-content">
                     <div class="component-grid">
                         <div class="component-card ml-card">
                             <h4>📄 Document Intelligence Service</h4>
-                            <p>Handles PDF processing, text extraction, and document classification using AWS Textract and custom ML models.</p>
+                            <p>Handles PDF processing, text extraction, and document classification using AWS Textract, custom ML models, and initial Gemini AI understanding.</p>
                             <div class="tech-stack">
                                 <span class="tech-badge">AWS Textract</span>
                                 <span class="tech-badge">Python</span>
                                 <span class="tech-badge">OpenCV</span>
                                 <span class="tech-badge">Pandas</span>
+                                <span class="tech-badge">Gemini API</span>
                             </div>
                         </div>
                         
                         <div class="component-card ml-card">
-                            <h4>🔍 Financial Data Extraction</h4>
-                            <p>ML models to identify and extract key financial metrics from bank statements, tax documents, and pay stubs.</p>
+                            <h4>🔍 Financial Data Extraction (Hybrid)</h4>
+                            <p>ML models to identify and extract key financial metrics from bank statements, tax documents, and pay stubs, optionally leveraging Gemini AI for enhanced extraction.</p>
                             <div class="tech-stack">
                                 <span class="tech-badge">scikit-learn</span>
                                 <span class="tech-badge">spaCy NLP</span>
                                 <span class="tech-badge">Regex Patterns</span>
                                 <span class="tech-badge">NumPy</span>
-                            </div>
-                        </div>
-                        
-                        <div class="component-card ml-card">
-                            <h4>📊 Credit Scoring Engine</h4>
-                            <p>Advanced ML algorithms for credit risk assessment, combining traditional metrics with AI-powered analysis.</p>
-                            <div class="tech-stack">
-                                <span class="tech-badge">XGBoost</span>
-                                <span class="tech-badge">Random Forest</span>
                                 <span class="tech-badge">Gemini AI</span>
-                                <span class="tech-badge">TensorFlow</span>
                             </div>
                         </div>
                         
                         <div class="component-card ml-card">
-                            <h4>⚖️ Risk Assessment AI</h4>
-                            <p>Deep learning model for comprehensive risk evaluation using the 5 C's of credit analysis framework.</p>
+                            <h4>📊 Credit Scoring Engine (Gemini Powered)</h4>
+                            <p>Utilizes Gemini AI's advanced analytical capabilities for comprehensive credit risk assessment, combining raw data with AI-driven insights.</p>
                             <div class="tech-stack">
-                                <span class="tech-badge">PyTorch</span>
-                                <span class="tech-badge">Transformers</span>
-                                <span class="tech-badge">Ensemble Methods</span>
-                                <span class="tech-badge">MLflow</span>
+                                <span class="tech-badge">Gemini AI</span>
                             </div>
                         </div>
                         
                         <div class="component-card ml-card">
-                            <h4>💰 Loan Recommendation System</h4>
-                            <p>ML-powered system to generate personalized loan offers based on risk profile and financial capacity.</p>
+                            <h4>⚖️ Risk Assessment AI (Gemini Driven)</h4>
+                            <p>Performs in-depth risk evaluation and granular 5 C's analysis, with all intelligence and reasoning driven by Gemini AI.</p>
                             <div class="tech-stack">
-                                <span class="tech-badge">Collaborative Filtering</span>
-                                <span class="tech-badge">Decision Trees</span>
-                                <span class="tech-badge">Optimization Algorithms</span>
-                                <span class="tech-badge">A/B Testing</span>
+                                <span class="tech-badge">Gemini AI</span>
                             </div>
                         </div>
                         
                         <div class="component-card ml-card">
-                            <h4>📈 Model Training & Validation</h4>
-                            <p>Continuous model improvement pipeline with automated retraining and performance monitoring.</p>
+                            <h4>💰 Loan Recommendation System (Gemini Powered)</h4>
+                            <p>Generates highly personalized loan offers based on the applicant's risk profile and financial capacity, with recommendations formulated by Gemini AI.</p>
                             <div class="tech-stack">
-                                <span class="tech-badge">Kubeflow</span>
-                                <span class="tech-badge">Docker</span>
-                                <span class="tech-badge">GitHub Actions</span>
-                                <span class="tech-badge">Model Registry</span>
+                                <span class="tech-badge">Gemini AI</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>📈 Gemini Model Adaptation & Management</h4>
+                            <p>Focuses on optimizing Gemini AI's behavior through prompt engineering, data adaptation, and managing API interactions for continuous improvement.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Gemini API</span>
+                                <span class="tech-badge">Prompt Engineering Tools</span>
+                                <span class="tech-badge">Data Versioning</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="workflow-steps">
                         <div class="workflow-step">
-                            <div class="step-title">1. Document Processing Pipeline</div>
-                            <p>PDF Upload → AWS Textract OCR → Text Cleaning → Financial Entity Recognition → Structured Data Extraction</p>
+                            <div class="step-title">1. Document Processing & Understanding (AWS Textract & Gemini API)</div>
+                            <p>PDF Upload → AWS Textract OCR → Text Cleaning → Initial Gemini AI Document Understanding → Financial Entity Recognition → Structured Data</p>
                         </div>
                         
                         <div class="workflow-step">
-                            <div class="step-title">2. Feature Engineering</div>
-                            <p>Raw Financial Data → Feature Extraction → Data Normalization → Feature Selection → Model-Ready Dataset</p>
+                            <div class="step-title">2. Gemini Data Preparation</div>
+                            <p>Raw Financial Data → Data Transformation for Gemini → Gemini-Ready Dataset</p>
                         </div>
                         
                         <div class="workflow-step">
-                            <div class="step-title">3. AI Analysis Pipeline</div>
-                            <p>Structured Data → Gemini AI Processing → Risk Score Calculation → 5 C's Analysis → Decision Recommendation</p>
+                            <div class="step-title">3. Gemini AI Core Analysis</div>
+                            <p>Structured Data → Gemini AI Comprehensive Risk Assessment & 5 C's Analysis → Decision Recommendation</p>
                         </div>
                         
                         <div class="workflow-step">
-                            <div class="step-title">4. Model Inference</div>
-                            <p>Real-time Prediction → Confidence Scoring → Risk Categorization → Loan Offer Generation → Results Storage</p>
+                            <div class="step-title">4. Gemini-Powered Inference & Offers</div>
+                            <p>Real-time Prediction (via Gemini API) → Confidence Scoring → Risk Categorization → Loan Offer Generation → Results Storage</p>
                         </div>
                     </div>
                 </div>
@@ -534,13 +526,13 @@
                 </div>
                 <div class="phase-content">
                     <div class="aws-services">
-                        <h3 style="text-align: center; margin: 0 0 20px 0;">☁️ AWS Services Integration</h3>
+                        <h3 style="text-align: center; margin: 0 0 20px 0;">☁️ Services Integration</h3>
                         <div class="service-grid">
                             <div class="service-item">🗄️ RDS PostgreSQL<br><small>Primary Database</small></div>
+                            <div class="service-item">🧠 Google Cloud Vertex AI<br><small>Gemini API Hosting</small></div>
                             <div class="service-item">📄 Textract<br><small>Document Processing</small></div>
                             <div class="service-item">📁 S3 Storage<br><small>File Management</small></div>
                             <div class="service-item">📧 SES Email<br><small>Notifications</small></div>
-                            <div class="service-item">🔐 Cognito<br><small>Authentication</small></div>
                             <div class="service-item">🖥️ EC2<br><small>Virtual Servers</small></div>
                             <div class="service-item">📊 CloudWatch<br><small>Monitoring</small></div>
                             <div class="service-item">🔗 API Gateway<br><small>API Management</small></div>
@@ -548,31 +540,31 @@
                     </div>
                     
                     <div class="textract-info">
-                        <h3 style="text-align: center; margin: 0 0 20px 0;">📄 AWS Textract PDF Capabilities</h3>
+                        <h3 style="text-align: center; margin: 0 0 20px 0;">📄 Document Understanding Capabilities (AWS Textract & Gemini AI)</h3>
                         <div class="textract-features">
                             <div class="feature-item">
                                 <h5>✅ PDF Document Support</h5>
-                                <p>Native PDF processing up to 3000 pages per document</p>
+                                <p>Native PDF processing (up to 3000 pages per document via Textract) and comprehensive understanding of document structure and content via Gemini AI.</p>
                             </div>
                             <div class="feature-item">
-                                <h5>📝 Text Extraction</h5>
-                                <p>High-accuracy OCR for printed and handwritten text</p>
+                                <h5>📝 Advanced Text Extraction</h5>
+                                <p>High-accuracy OCR for printed and handwritten text (Textract) combined with deep semantic text extraction from Gemini AI.</p>
                             </div>
                             <div class="feature-item">
-                                <h5>📊 Table Detection</h5>
-                                <p>Automatic table structure recognition and data extraction</p>
+                                <h5>📊 Intelligent Table & Form Understanding</h5>
+                                <p>Automatic table structure recognition and data extraction (Textract) enhanced by Gemini AI's ability to understand complex form layouts and relationships.</p>
                             </div>
                             <div class="feature-item">
-                                <h5>📋 Form Processing</h5>
-                                <p>Key-value pair extraction from forms and documents</p>
+                                <h5>📋 Key-Value Pair & Entity Extraction</h5>
+                                <p>Precise key-value pair extraction from forms (Textract) and smart identification/extraction of specific financial entities through Gemini AI.</p>
                             </div>
                             <div class="feature-item">
-                                <h5>🔍 Document Analysis</h5>
-                                <p>Layout analysis, reading order, and relationship detection</p>
+                                <h5>🔍 Document Analysis & Semantic Reasoning</h5>
+                                <p>Layout analysis, reading order, and relationship detection (Textract) augmented by Gemini AI's deep semantic understanding of document context and intent.</p>
                             </div>
                             <div class="feature-item">
-                                <h5>⚡ Async Processing</h5>
-                                <p>Batch processing for large documents with job tracking</p>
+                                <h5>⚡ Scalable & Async Processing</h5>
+                                <p>Batch processing for large documents with job tracking (Textract) and efficient, scalable API-driven processing for high volumes via Gemini AI.</p>
                             </div>
                         </div>
                         
