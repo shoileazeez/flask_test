@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML & Backend Architecture - Loan System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .architecture-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        }
+        
+        .toggle-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+        }
+        
+        .architecture-section {
+            display: none;
+            padding: 40px;
+            border-radius: 20px; /* Add border-radius to sections */
+            margin: 20px; /* Add margin to separate sections from container edges */
+        }
+        
+        .architecture-section.active {
+            display: block;
+        }
+        
+        .ml-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        }
+        
+        .backend-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .phase {
+            margin-bottom: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            background: white;
+        }
+        
+        .ml-phase {
+            border-color: #e74c3c;
+        }
+        
+        .backend-phase {
+            border-color: #3498db;
+        }
+        
+        .phase-header {
+            padding: 25px;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ml-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .backend-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .phase-content {
+            padding: 30px;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .component-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ml-card {
+            border-left-color: #e74c3c;
+        }
+        
+        .backend-card {
+            border-left-color: #3498db;
+        }
+        
+        .component-card h4 {
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .backend-badge {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .workflow-step {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #27ae60;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #27ae60;
+            margin: 0 0 10px 0;
+        }
+        
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .api-card {
+            background: #f1f3f4;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #6c5ce7;
+        }
+        
+        .method-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .post { background: #00b894; color: white; }
+        .get { background: #0984e3; color: white; }
+        .put { background: #fdcb6e; color: #2d3436; }
+        .delete { background: #e17055; color: white; }
+        
+        .aws-services {
+            background: linear-gradient(135deg, #ff9a00 0%, #ffad33 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .service-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .textract-info {
+            background: linear-gradient(135deg, #00cec9 0%, #55a3ff 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .textract-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-item h5 {
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .component-grid, .api-grid, .service-grid, .textract-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .architecture-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 ML & Backend Architecture</h1>
+            <p>Loan Analysis System - Separated Machine Learning & Backend Components</p>
+        </div>
+        
+        <div class="architecture-toggle">
+            <button class="toggle-btn active" onclick="showSection('ml', this)" data-section="ml">🤖 Machine Learning Pipeline</button>
+            <button class="toggle-btn" onclick="showSection('backend', this)" data-section="backend">⚙️ Backend Services</button>
+            <button class="toggle-btn" onclick="showSection('integration', this)" data-section="integration">🔗 Integration & Deployment</button>
+        </div>
+        
+        <div id="ml-section" class="architecture-section active ml-section">
+            <div class="phase ml-phase">
+                <div class="phase-header ml-header">
+                    <span>🧠</span>
+                    <span>Machine Learning Pipeline Architecture</span>
+                </div>
+                <div class="phase-content">
+                    <div class="component-grid">
+                        <div class="component-card ml-card">
+                            <h4>📄 Document Intelligence Service</h4>
+                            <p>Handles PDF processing, text extraction, and document classification using AWS Textract and custom ML models.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">AWS Textract</span>
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">OpenCV</span>
+                                <span class="tech-badge">Pandas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>🔍 Financial Data Extraction</h4>
+                            <p>ML models to identify and extract key financial metrics from bank statements, tax documents, and pay stubs.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">scikit-learn</span>
+                                <span class="tech-badge">spaCy NLP</span>
+                                <span class="tech-badge">Regex Patterns</span>
+                                <span class="tech-badge">NumPy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>📊 Credit Scoring Engine</h4>
+                            <p>Advanced ML algorithms for credit risk assessment, combining traditional metrics with AI-powered analysis.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">XGBoost</span>
+                                <span class="tech-badge">Random Forest</span>
+                                <span class="tech-badge">Gemini AI</span>
+                                <span class="tech-badge">TensorFlow</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>⚖️ Risk Assessment AI</h4>
+                            <p>Deep learning model for comprehensive risk evaluation using the 5 C's of credit analysis framework.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">PyTorch</span>
+                                <span class="tech-badge">Transformers</span>
+                                <span class="tech-badge">Ensemble Methods</span>
+                                <span class="tech-badge">MLflow</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>💰 Loan Recommendation System</h4>
+                            <p>ML-powered system to generate personalized loan offers based on risk profile and financial capacity.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Collaborative Filtering</span>
+                                <span class="tech-badge">Decision Trees</span>
+                                <span class="tech-badge">Optimization Algorithms</span>
+                                <span class="tech-badge">A/B Testing</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card ml-card">
+                            <h4>📈 Model Training & Validation</h4>
+                            <p>Continuous model improvement pipeline with automated retraining and performance monitoring.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Kubeflow</span>
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">GitHub Actions</span>
+                                <span class="tech-badge">Model Registry</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="step-title">1. Document Processing Pipeline</div>
+                            <p>PDF Upload → AWS Textract OCR → Text Cleaning → Financial Entity Recognition → Structured Data Extraction</p>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-title">2. Feature Engineering</div>
+                            <p>Raw Financial Data → Feature Extraction → Data Normalization → Feature Selection → Model-Ready Dataset</p>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-title">3. AI Analysis Pipeline</div>
+                            <p>Structured Data → Gemini AI Processing → Risk Score Calculation → 5 C's Analysis → Decision Recommendation</p>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-title">4. Model Inference</div>
+                            <p>Real-time Prediction → Confidence Scoring → Risk Categorization → Loan Offer Generation → Results Storage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="backend-section" class="architecture-section backend-section">
+            <div class="phase backend-phase">
+                <div class="phase-header backend-header">
+                    <span>⚙️</span>
+                    <span>Backend Services Architecture</span>
+                </div>
+                <div class="phase-content">
+                    <div class="component-grid">
+                        <div class="component-card backend-card">
+                            <h4>🌐 API Gateway & Routing</h4>
+                            <p>RESTful API endpoints, request routing, authentication, rate limiting, and API documentation.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">Django</span>
+                                <span class="tech-badge backend-badge">Django Rest Framework (DRF)</span>
+                                <span class="tech-badge backend-badge">AWS API Gateway</span>
+                                <span class="tech-badge backend-badge">JWT Auth</span>
+                                <span class="tech-badge backend-badge">Swagger</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card backend-card">
+                            <h4>👤 User Management Service</h4>
+                            <p>User registration, authentication, profile management, and role-based access control.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">JWT Auth</span>
+                                <span class="tech-badge backend-badge">OAuth 2.0</span>
+                                <span class="tech-badge backend-badge">bcrypt</span>
+                                <span class="tech-badge backend-badge">Session Management</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card backend-card">
+                            <h4>📋 Application Management</h4>
+                            <p>Loan application lifecycle, status tracking, document management, and workflow orchestration.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">PostgreSQL</span>
+                                <span class="tech-badge backend-badge">SQLAlchemy</span>
+                                <span class="tech-badge backend-badge">Celery</span>
+                                <span class="tech-badge backend-badge">Redis</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card backend-card">
+                            <h4>📁 Document Storage Service</h4>
+                            <p>Secure file upload, storage management, document versioning, and access control.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">AWS S3</span>
+                                <span class="tech-badge backend-badge">Pre-signed URLs</span>
+                                <span class="tech-badge backend-badge">File Validation</span>
+                                <span class="tech-badge backend-badge">Encryption</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card backend-card">
+                            <h4>📧 Notification Service</h4>
+                            <p>Email notifications, SMS alerts, push notifications, and communication logging.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">AWS SES</span>
+                                <span class="tech-badge backend-badge">AWS SNS</span>
+                                <span class="tech-badge backend-badge">Email Templates</span>
+                                <span class="tech-badge backend-badge">Event Triggers</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card backend-card">
+                            <h4>💳 Payment & Calculation Service</h4>
+                            <p>Loan calculations, payment schedules, interest computation, and financial modeling.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge backend-badge">Financial Libraries</span>
+                                <span class="tech-badge backend-badge">Amortization</span>
+                                <span class="tech-badge backend-badge">Payment Gateway</span>
+                                <span class="tech-badge backend-badge">Audit Trails</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="api-grid">
+                        <div class="api-card">
+                            <span class="method-tag post">POST</span>
+                            <strong>/api/v1/applications</strong><br>
+                            <small>Create new loan application</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag post">POST</span>
+                            <strong>/api/v1/documents/upload</strong><br>
+                            <small>Upload and process documents</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag get">GET</span>
+                            <strong>/api/v1/applications/{id}/status</strong><br>
+                            <small>Get application processing status</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag post">POST</span>
+                            <strong>/api/v1/analysis/trigger</strong><br>
+                            <small>Start ML analysis pipeline</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag get">GET</span>
+                            <strong>/api/v1/analysis/{id}/results</strong><br>
+                            <small>Retrieve analysis results</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag get">GET</span>
+                            <strong>/api/v1/offers/{app_id}</strong><br>
+                            <small>Get loan offers</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag put">PUT</span>
+                            <strong>/api/v1/offers/{id}/respond</strong><br>
+                            <small>Accept/decline offer</small>
+                        </div>
+                        
+                        <div class="api-card">
+                            <span class="method-tag get">GET</span>
+                            <strong>/api/v1/repayment/{loan_id}/schedule</strong><br>
+                            <small>Generate payment schedule</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="integration-section" class="architecture-section">
+            <div class="phase">
+                <div class="phase-header" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
+                    <span>🔗</span>
+                    <span>Integration & Deployment Architecture</span>
+                </div>
+                <div class="phase-content">
+                    <div class="aws-services">
+                        <h3 style="text-align: center; margin: 0 0 20px 0;">☁️ AWS Services Integration</h3>
+                        <div class="service-grid">
+                            <div class="service-item">🗄️ RDS PostgreSQL<br><small>Primary Database</small></div>
+                            <div class="service-item">📄 Textract<br><small>Document Processing</small></div>
+                            <div class="service-item">📁 S3 Storage<br><small>File Management</small></div>
+                            <div class="service-item">📧 SES Email<br><small>Notifications</small></div>
+                            <div class="service-item">🔐 Cognito<br><small>Authentication</small></div>
+                            <div class="service-item">🖥️ EC2<br><small>Virtual Servers</small></div>
+                            <div class="service-item">📊 CloudWatch<br><small>Monitoring</small></div>
+                            <div class="service-item">🔗 API Gateway<br><small>API Management</small></div>
+                        </div>
+                    </div>
+                    
+                    <div class="textract-info">
+                        <h3 style="text-align: center; margin: 0 0 20px 0;">📄 AWS Textract PDF Capabilities</h3>
+                        <div class="textract-features">
+                            <div class="feature-item">
+                                <h5>✅ PDF Document Support</h5>
+                                <p>Native PDF processing up to 3000 pages per document</p>
+                            </div>
+                            <div class="feature-item">
+                                <h5>📝 Text Extraction</h5>
+                                <p>High-accuracy OCR for printed and handwritten text</p>
+                            </div>
+                            <div class="feature-item">
+                                <h5>📊 Table Detection</h5>
+                                <p>Automatic table structure recognition and data extraction</p>
+                            </div>
+                            <div class="feature-item">
+                                <h5>📋 Form Processing</h5>
+                                <p>Key-value pair extraction from forms and documents</p>
+                            </div>
+                            <div class="feature-item">
+                                <h5>🔍 Document Analysis</h5>
+                                <p>Layout analysis, reading order, and relationship detection</p>
+                            </div>
+                            <div class="feature-item">
+                                <h5>⚡ Async Processing</h5>
+                                <p>Batch processing for large documents with job tracking</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.2); border-radius: 10px; padding: 20px; margin-top: 20px;">
+                            <h4>🎯 Perfect for Financial Documents:</h4>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li>Bank statements with transaction tables</li>
+                                <li>Tax documents with complex forms</li>
+                                <li>Pay stubs with structured data</li>
+                                <li>Financial reports and statements</li>
+                                <li>Mortgage and loan documents</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="component-grid">
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>🚀 Deployment Strategy</h4>
+                            <p>Multi-environment deployment with containerized services, automated CI/CD, and infrastructure as code.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Docker</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">GitHub Actions</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>🔄 CI/CD Pipeline</h4>
+                            <p>Automated testing, building, and deployment pipeline with quality gates and rollback capabilities.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">GitHub Actions</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">pytest</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">AWS CodeDeploy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>📊 Monitoring & Observability</h4>
+                            <p>Comprehensive monitoring, logging, and alerting system for both ML models and backend services.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">CloudWatch</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Grafana</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Prometheus</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">ELK Stack</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>🔐 Security & Compliance</h4>
+                            <p>End-to-end security implementation with encryption, access control, and compliance monitoring.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">AWS IAM</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">SSL/TLS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>⚡ Performance Optimization</h4>
+                            <p>Caching strategies, load balancing, auto-scaling, and performance monitoring for optimal user experience.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Redis Cache</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">AWS ELB</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Auto Scaling</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">CDN</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Database Optimization</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Django prefetch_related</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Django select_related</span>
+                                <span class="tech-badge" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">Django Silk</span>
+                            </div>
+                        </div>
+                        
+                        <div class="component-card" style="border-left-color: #27ae60;">
+                            <h4>🔄 Data Pipeline Integration</h4>
+                            <p>Seamless data flow between ML models and backend services with event-driven architecture.</p>
+                            <div class="tech-stack">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the selected architecture section and update active button
+        // It now accepts an optional 'clickedButton' argument.
+        function showSection(sectionId, clickedButton) {
+            // Get all architecture sections
+            const sections = document.querySelectorAll('.architecture-section');
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Get all toggle buttons
+            const buttons = document.querySelectorAll('.toggle-btn');
+            // Deactivate all buttons
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId + '-section').classList.add('active');
+
+            // Activate the clicked button if it was passed (from an onclick event)
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            } else {
+                // If no button was clicked (e.g., initial DOMContentLoaded load),
+                // find the button corresponding to the sectionId using its data-section attribute
+                const targetButton = document.querySelector(`.toggle-btn[data-section="${sectionId}"]`);
+                if (targetButton) {
+                    targetButton.classList.add('active');
+                }
+            }
+        }
+
+        // Initialize by showing the ML section when the page loads
+        // We call showSection with 'ml' but without a 'clickedButton' argument,
+        // so the function will find and activate the correct button itself.
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('ml'); 
+        });
+    </script>
+</body>
+</html>
