@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoile Azeezat Adebola - Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c5aa0;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .content {
+            margin-left: 0;
+            font-size: 14px;
+            text-align: justify;
+        }
+        
+        .education-item, .work-item {
+            margin-bottom: 15px;
+        }
+        
+        .institution {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .degree-info {
+            color: #666;
+            font-style: italic;
+            margin-top: 2px;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .company-info {
+            color: #666;
+            font-style: italic;
+            margin-top: 2px;
+        }
+        
+        .responsibilities {
+            margin-top: 10px;
+            margin-left: 0;
+        }
+        
+        .responsibilities h4 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .responsibilities ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .responsibilities li {
+            margin-bottom: 5px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        @media print {
+            body {
+                padding: 20px;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">SHOILE AZEEZAT ADEBOLA</div>
+        <div class="contact-info">
+            Ogun State, Nigeria<br>
+            Tel: 09020551122<br>
+            Email: shoileazeezat@gmail.com
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Objective</div>
+        <div class="content">
+            To secure a challenging position as a Sales Representative where I can apply my communication and persuasion skills to drive sales growth, enhance customer satisfaction, and contribute positively to the success of the organization.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Profile</div>
+        <div class="content">
+            A highly motivated and goal-oriented individual with a passion for delivering exceptional customer service. Skilled in identifying client needs, negotiating deals, and promoting products effectively. Excellent interpersonal skills and work ethic, with the ability to thrive in fast-paced and dynamic sales environments.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="content">
+            <div class="education-item">
+                <div class="institution">Olabisi Onabanjo University</div>
+                <div class="degree-info">B.A., 2020 – 2024</div>
+            </div>
+            <div class="education-item">
+                <div class="institution">Remo Divisional High School, Sagamu</div>
+                <div class="degree-info">SSCE, 2020</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Work Experience</div>
+        <div class="content">
+            <div class="work-item">
+                <div class="job-title">Sales Representative</div>
+                <div class="company-info">Nikky Mikky Ventures, Sagamu — 2019–2020</div>
+            </div>
+            <div class="work-item">
+                <div class="job-title">Sales Representative</div>
+                <div class="company-info">Ruben Mobile and Phone Services — 2017–2018</div>
+            </div>
+            
+            <div class="responsibilities">
+                <h4>Key Responsibilities:</h4>
+                <ul>
+                    <li>Built strong customer relationships to encourage repeat business.</li>
+                    <li>Effectively promoted products and services to meet customer needs.</li>
+                    <li>Achieved and often exceeded monthly sales targets.</li>
+                    <li>Maintained detailed records of customer interactions and transactions.</li>
+                    <li>Resolved customer complaints promptly and professionally.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Hobbies</div>
+        <div class="content">
+            Reading, listening to music, interacting with people
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Referees</div>
+        <div class="content">
+            Available on request
+        </div>
+    </div>
+</body>
+</html>
